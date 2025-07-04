@@ -1,0 +1,20 @@
+<section class='h-screen overflow-hidden'>
+	<slot />
+</section>
+
+<style>
+	section {
+		width: 100%;
+		display: flex;
+	}
+	@media screen and (max-width: 480px) {
+		section {
+			flex-direction: column;
+		}
+	}
+	@media screen and (max-width: 1023px) {
+		section {
+			flex-direction: column;
+		}
+	}
+</style>

@@ -1,0 +1,74 @@
+---
+export interface Props {
+	color_iconos: string
+	bg_iconos: string
+}
+const { color_iconos, bg_iconos } = Astro.props
+---
+
+<div class='box-redes flex flex-col gap-2 font-monserrat'>
+	<div>
+		<h2
+			class='font-bold text-[30px] md:text-[20px] lg:text-[30px] xl:text-[40px] lg:text-left'
+		>
+			Envia Whatsapp
+		</h2>
+	</div>
+	<div class='max-w-[58px] m-auto lg:m-0'>
+		<a
+			href={`https://wa.me/+5214151140205`}
+			target='_blank'
+			aria-label='Whatsapp'
+			class='hover:scale-110 duration-500 ease-in-out z-50'
+		>
+			<img
+				src='whatsapp.svg'
+				alt='whatsapp'
+				height='68'
+				class='w-[45px] md:w-[58px]'
+			/>
+		</a>
+	</div>
+</div>
+
+<style define:vars={{ bg_iconos, color_iconos }}>
+	.box-redes {
+		color: white;
+		justify-items: center;
+		padding: 2rem;
+	}
+	.phone {
+		text-align: left;
+		font-size: 25px;
+	}
+	i {
+		color: var(--color_iconos);
+		font-size: 2rem;
+	}
+	.item-red a {
+		text-decoration: none;
+		color: var(--color_iconos);
+	}
+	a:hover {
+		color: #35d8b0;
+	}
+	@media screen and (max-width: 480px) {
+		.box-redes {
+			flex-direction: column;
+		}
+		.phone {
+			text-align: center;
+			font-size: 15px;
+		}
+	}
+
+	@media screen and (max-width: 1023px) and (min-width: 481px) {
+		.box-redes {
+			flex-direction: column;
+		}
+		.phone {
+			text-align: center;
+			font-size: 20px;
+		}
+	}
+</style>

@@ -1,0 +1,114 @@
+---
+export interface Props {
+	logo: string
+	direction: string
+	phone: string
+	background: string
+	primary_color: string
+	secondary_color: string
+}
+const { logo, direction, phone, background, primary_color, secondary_color } =
+	Astro.props
+---
+
+<div class='logo-col p-[4%]'>
+	<div class='logo-box'>
+		<img src={'/' + logo} alt='logo' class='logo m-auto lg:m-0' />
+	</div>
+	<div class='info-box'>
+		<h1
+			class='md:text-[20px] lg:text-[30px] xl:text-[40px] font-monserrat font-bold'
+		>
+			Próximamente
+		</h1>
+
+		<div class='flex flex-col gap-3'>
+			<p class='font-monserrat'>
+				<span class='font-bold'>Dirección:</span>
+				{direction}
+			</p>
+			<p class='font-monserrat'>
+				<span class='font-bold'>Tel.</span>
+				{phone}
+				<br />
+				+52 (415) 154 5152
+			</p>
+		</div>
+	</div>
+</div>
+
+<style define:vars={{ background, primary_color, secondary_color }}>
+	.logo-col {
+		background: var(--background);
+		display: flex;
+		text-align: left;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		width: 30%;
+		height: auto;
+		gap: 1rem;
+	}
+	.logo-box {
+		width: 100%;
+	}
+	.logo {
+		max-width: 100%;
+	}
+	h1 {
+		color: var(--primary_color);
+		line-height: 90%;
+	}
+	p {
+		color: var(--secondary_color);
+	}
+
+	.titlebox {
+		font-size: 50px;
+	}
+
+	@media screen and (max-width: 480px) {
+		.logo-col {
+			height: 40%;
+			width: 100%;
+			padding: 2rem;
+			text-align: center;
+		}
+		.logo-box {
+			width: 100%;
+		}
+		.info-box {
+			width: 100%;
+		}
+		.logo {
+			width: 50vw;
+		}
+
+		.titlebox {
+			font-size: 40px;
+		}
+	}
+	@media screen and (max-width: 1023px) and (min-width: 481px) {
+		.logo-col {
+			height: 50%;
+			width: 100%;
+			padding: 2rem;
+			text-align: center;
+		}
+		.logo {
+			width: 30vw;
+		}
+		.line {
+			margin-left: auto;
+			margin-right: auto;
+		}
+		.titlebox {
+			font-size: 45px;
+		}
+	}
+	@media screen and (max-width: 1180px) and (min-width: 1024px) {
+		.logo-col {
+			width: 50%;
+		}
+	}
+</style>

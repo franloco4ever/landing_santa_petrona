@@ -1,0 +1,189 @@
+---
+import FormControl from '../components/FormControl.astro'
+import ContentLayout from '../layouts/ContentLayout.astro'
+import Form from '../layouts/Form.astro'
+import LogoBox from '../layouts/LogoBox.astro'
+import MainLayout from '../layouts/MainLayout.astro'
+import PageContent from '../layouts/PageContent.astro'
+---
+
+<MainLayout title='TGDA | Tejeda Grupo Dental & Asociados'>
+	<PageContent>
+		<LogoBox
+			logo='tgdaLogoAzul.svg'
+			direction='Salida a Celaya 22, Colonia Allende, San Miguel de Allende, Guanajuato, Mexico 37760'
+			phone='+52 (415) 152 2065'
+			background='#D7EEFD'
+			primary_color='#1A1D38'
+			secondary_color='1A1D38'
+		/>
+		<ContentLayout>
+			<Form
+				btn_color='white'
+				btn_text='Enviar comentario'
+				btn_text_color='black'
+				txt_area_bg='566171'
+				txt_area_border='white'
+				label_color='white'
+			>
+				<div>
+					<h2
+						class='text-white mb-[3%] text-[30px] font-bold font-monserrat
+          md:text-[20px] lg:text-[30px] xl:text-[40px]'
+					>
+						Agenda tu cita
+					</h2>
+				</div>
+				<div class='flex flex-col lg:flex-row gap-4'>
+					<FormControl
+						tipo='text'
+						name='nombre'
+						id='nombre'
+						placeholder='Nombre'
+						bg_color=''
+						line_color='white'
+						label='Nombre'
+						label_color='white'
+					/>
+					<FormControl
+						tipo='email'
+						name='email'
+						id='email'
+						placeholder='Email'
+						bg_color=''
+						line_color='white'
+						label='Email'
+						label_color='white'
+					/>
+				</div>
+				<div class='flex flex-col gap-4'>
+					<div class='flex flex-col gap-2 w-full mt-[4%]'>
+						<div>
+							<label for='' class='text-white font-bold font'>Mensaje</label>
+						</div>
+						<div class='font-monserrat'>
+							<textarea
+								rows='4'
+								placeholder='Mensaje'
+								name='message'
+								class='text-white bg-transparent hover:bg-white hover:text-[#191d38] duration-300 ease-out
+        border-[1px] rounded-md w-full h-auto p-4'
+							></textarea>
+						</div>
+					</div>
+					<div class='w-full h-auto'>
+						<button
+							type='button'
+							id='btnSend'
+							class='bg-transparent border-[1px] border-white text-white w-[50%] rounded-md
+         p-3 hover:bg-white hover:text-[#191d38] font-bold duration-300 ease-out font-monserrat'
+							><span id='btnText'>Agendar</span><img
+								src='cargando.gif'
+								id='loadingGif'
+								class='hidden m-auto w-5 h-5'
+							/></button
+						>
+					</div>
+				</div>
+			</Form>
+		</ContentLayout>
+	</PageContent>
+</MainLayout>
+
+<script>
+	import Swal from 'sweetalert2'
+	const contactForm = document.querySelector('#contactForm') as HTMLFormElement
+	const btnSend = document.querySelector('#btnSend') as HTMLButtonElement
+	const btnText = document.querySelector('#btnText') as HTMLSpanElement
+	const loadingGif = document.querySelector('#loadingGif') as HTMLImageElement
+
+	const myHeaders = new Headers()
+	myHeaders.append('Content-Type', 'application/json')
+
+	const fetchAPICaptcha = async (token: string): Promise<boolean> => {
+		try {
+			const req = await fetch('/api/captcha', {
+				method: 'POST',
+				headers: myHeaders,
+				body: JSON.stringify({ token: token }),
+			})
+			const result = await req.json()
+			if (result.code !== 200) {
+				return false
+			}
+			return true
+		} catch (error) {
+			console.log(error)
+			return false
+		}
+	}
+
+	const checkCaptcha = async () => {
+		btnSend.disabled = true
+		btnText.hidden = true
+		loadingGif.classList.remove('hidden')
+		//@ts-ignore
+		grecaptcha.ready(() => {
+			//@ts-ignore
+			grecaptcha
+				.execute('6LctmnIqAAAAAPD4ezp43vF1ZSbEieIfHiCwQ57f', {
+					action: 'submit',
+				})
+				.then(async (token) => {
+					const isValidToken = await fetchAPICaptcha(token)
+					isValidToken
+						? postData()
+						: Swal.fire({
+								title: 'Ups..',
+								text: 'Ha ocurrido un error inténtelo más tarde',
+								icon: 'error',
+								confirmButtonText: 'OK',
+							})
+				})
+				.catch((e) => {
+					btnSend.disabled = false
+					console.error(e)
+					Swal.fire({
+						title: 'Ups..',
+						text: 'Ha ocurrido un error inténtalo más tarde',
+						icon: 'error',
+						confirmButtonText: 'Ok',
+					})
+				})
+		})
+	}
+
+	const postData = async () => {
+		try {
+			const formData = new FormData(contactForm)
+			const res = await fetch('/api/form', {
+				method: 'POST',
+				body: formData,
+			})
+
+			if (!res.ok) {
+				throw new Error('Fallo en petición')
+			}
+			Swal.fire({
+				title: 'Listo',
+				text: 'Pŕonto nos pondremos en contacto',
+				icon: 'success',
+				confirmButtonText: 'Listo',
+			})
+			contactForm.reset()
+		} catch (error) {
+			Swal.fire({
+				title: 'Ups..',
+				text: 'Ha ocurrido un error inténtalo más tarde',
+				icon: 'error',
+				confirmButtonText: 'Ok',
+			})
+			console.log(error)
+		} finally {
+			btnSend.disabled = false
+			btnText.hidden = false
+			loadingGif.classList.add('hidden')
+		}
+	}
+	document.querySelector('#btnSend').addEventListener('click', checkCaptcha)
+</script>
