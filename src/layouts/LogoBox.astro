@@ -16,7 +16,7 @@ const { logo, text1, text2, phone, red1, red2, red3, email, background, primary_
 	Astro.props
 ---
 
-<div class='logo-col p-[4%]'>
+<div class='logo-col p-[4%] portrait:p-[10%]'>
 	<div class='logo-box'>
 		<img src={'/' + logo} alt='logo' class='logo m-auto lg:m-0' />
 	</div>
@@ -42,7 +42,7 @@ const { logo, text1, text2, phone, red1, red2, red3, email, background, primary_
 				{phone}
 				
 			</p>
-			<div class="flex  gap-6">
+			<div class="flex  gap-6 portrait:place-content-center">
 				
 			<a class='font-monserrat font-bold' href={red1}>
 				Instagram
