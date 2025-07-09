@@ -11,34 +11,35 @@ const {
 } = Astro.props
 ---
 
-<div class='form-control w-full m-auto sm:m-0 font-monserrat'>
-	<label for={id}>{label}</label>
+<div class='form-control w-full m-auto sm:m-0 font-monserrat text-[#1D1D1B]'>
+	<label for={id} class="text-[#1D1D1B]">{label}</label>
 	<input
 		type={tipo}
 		id={id}
 		name={name}
 		placeholder={placeholder}
 		required
-		class='hover:bg-white hover:text-[#191d38]
-   duration-300 ease-out p-4'
+		class=' text-[#1D1D1B]
+   duration-300 ease-out p-4 placeholder:text-[#1D1D1B]'
 	/>
 </div>
 
-<style define:vars={{ bg_color, line_color, label_color }}>
+<style define:vars={{ bg_color, line_color}}>
 	input {
 		border: solid 1px var(--line_color);
 		background-color: var(--bg_color);
 		border-radius: 5px;
 		height: 2rem;
-		color: white;
+		color: #1D1D1B;
 	}
 	.form-control {
 		display: flex;
 		flex-direction: column;
 		gap: 0.5rem;
+		color: #1D1D1B;
 	}
 	label {
-		color: var(--label_color);
+		color: #1D1D1B;
 		font-weight: 600;
 	}
 </style>

@@ -1,13 +1,18 @@
 ---
 export interface Props {
 	logo: string
-	direction: string
+	text1: string
+	text2: string
+	red1?: string
+	red2?: string
+	red3?: string
+	email?: string
 	phone: string
 	background: string
 	primary_color: string
 	secondary_color: string
 }
-const { logo, direction, phone, background, primary_color, secondary_color } =
+const { logo, text1, text2, phone, red1, red2, red3, email, background, primary_color, secondary_color } =
 	Astro.props
 ---
 
@@ -19,20 +24,36 @@ const { logo, direction, phone, background, primary_color, secondary_color } =
 		<h1
 			class='md:text-[20px] lg:text-[30px] xl:text-[40px] font-monserrat font-bold'
 		>
-			Próximamente
+		     Coming Soon 
 		</h1>
 
 		<div class='flex flex-col gap-3'>
-			<p class='font-monserrat'>
-				<span class='font-bold'>Dirección:</span>
-				{direction}
+			<p set:html={text1} class='font-monserrat'>
+				
 			</p>
+
+			<p class='font-monserrat' set:html={text2}>		
+			</p>
+		
+			
+			<a href={`mailto:${email}`}	>{email}</a>
 			<p class='font-monserrat'>
 				<span class='font-bold'>Tel.</span>
 				{phone}
-				<br />
-				+52 (415) 154 5152
+				
 			</p>
+			<div class="flex  gap-6">
+				
+			<a class='font-monserrat font-bold' href={red1}>
+				Instagram
+			</a>
+			<a class='font-monserrat font-bold' href={red2}>
+				Facebook
+			</a>
+			<a class='font-monserrat font-bold' href={red3}>
+				TikTok
+			</a>
+</div>
 		</div>
 	</div>
 </div>
