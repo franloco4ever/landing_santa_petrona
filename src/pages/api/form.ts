@@ -9,8 +9,8 @@ export const POST: APIRoute = async ({ request }) => {
 
 	try {
 		await transporter.sendMail({
-			from: '"TGDA" <l4e@tgdadental.com>',
-			to: ['citas@tgdadental.com, poldimer@loco4ever.com'],
+			from: '"Sitio Web" <hola@santapetrona.com>',
+			to: ['hola@santapetrona.com, andrea@loco4ever.com'],
 			subject: 'Nueva solicitud de cita',
 			html: `
         <h1>Nueva solicitud de cita</h1>
