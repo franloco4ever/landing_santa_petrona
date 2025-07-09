@@ -11,11 +11,16 @@ import PageContent from '../layouts/PageContent.astro'
 	<PageContent>
 		<LogoBox
 			logo='tgdaLogoAzul.svg'
-			direction='Salida a Celaya 22, Colonia Allende, San Miguel de Allende, Guanajuato, Mexico 37760'
-			phone='+52 (415) 152 2065'
-			background='#D7EEFD'
-			primary_color='#1A1D38'
-			secondary_color='1A1D38'
+			text1='En <b>Santa Petrona</b> creamos espacios que se sienten. <br/> Estamos trabajando en una nueva etapa donde el arte, el interiorismo y la emoción se encuentran'
+			text2='Muy pronto vas a poder conocer nuestro universo completo. <br/> Gracias por estar acá, esto apenas comienza.'
+			red1='https://www.instagram.com/santapetrona/'
+			red2='https://www.facebook.com/santapetronahome'
+			red3='https://www.tiktok.com/@santapetronahome'
+			email='hola@santapetrona.com'
+			phone='+52 461 195 2030'
+			background='#f4f4f4'
+			primary_color='#1D1D1B'
+			secondary_color='#1D1D1B'
 		/>
 		<ContentLayout>
 			<Form
@@ -23,15 +28,15 @@ import PageContent from '../layouts/PageContent.astro'
 				btn_text='Enviar comentario'
 				btn_text_color='black'
 				txt_area_bg='566171'
-				txt_area_border='white'
-				label_color='white'
+				txt_area_border='#1D1D1B'
+				label_color='#1D1D1B'
 			>
 				<div>
 					<h2
-						class='text-white mb-[3%] text-[30px] font-bold font-monserrat
+						class='text-[#1D1D1B] mb-[3%] text-[30px] font-bold font-monserrat
           md:text-[20px] lg:text-[30px] xl:text-[40px]'
 					>
-						Agenda tu cita
+						Get in touch
 					</h2>
 				</div>
 				<div class='flex flex-col lg:flex-row gap-4'>
@@ -41,9 +46,9 @@ import PageContent from '../layouts/PageContent.astro'
 						id='nombre'
 						placeholder='Nombre'
 						bg_color=''
-						line_color='white'
+						line_color='#1D1D1B'
 						label='Nombre'
-						label_color='white'
+						label_color='#1D1D1B'
 					/>
 					<FormControl
 						tipo='email'
@@ -51,23 +56,23 @@ import PageContent from '../layouts/PageContent.astro'
 						id='email'
 						placeholder='Email'
 						bg_color=''
-						line_color='white'
+						line_color='#1D1D1B'
 						label='Email'
-						label_color='white'
+						label_color='#1D1D1B'
 					/>
 				</div>
 				<div class='flex flex-col gap-4'>
 					<div class='flex flex-col gap-2 w-full mt-[4%]'>
 						<div>
-							<label for='' class='text-white font-bold font'>Mensaje</label>
+							<label for='' class='text-[#1D1D1B] font-bold font-monserrat'>Mensaje</label>
 						</div>
 						<div class='font-monserrat'>
 							<textarea
 								rows='4'
 								placeholder='Mensaje'
 								name='message'
-								class='text-white bg-transparent hover:bg-white hover:text-[#191d38] duration-300 ease-out
-        border-[1px] rounded-md w-full h-auto p-4'
+								class='text-[#1D1D1B] bg-transparent hover:bg-transparent hover:text-[#191d38] duration-300 ease-out
+        border-[1px] rounded-md w-full h-auto p-4 border-[#1D1D1B] placeholder:text-[#1D1D1B]'
 							></textarea>
 						</div>
 					</div>
@@ -75,8 +80,8 @@ import PageContent from '../layouts/PageContent.astro'
 						<button
 							type='button'
 							id='btnSend'
-							class='bg-transparent border-[1px] border-white text-white w-[50%] rounded-md
-         p-3 hover:bg-white hover:text-[#191d38] font-bold duration-300 ease-out font-monserrat'
+							class='bg-transparent border-[1px] border-[#1D1D1B] text-[#1D1D1B] w-[50%] rounded-md
+         p-3  hover:text-[#191d38] font-bold duration-300 ease-out font-monserrat'
 							><span id='btnText'>Agendar</span><img
 								src='cargando.gif'
 								id='loadingGif'
